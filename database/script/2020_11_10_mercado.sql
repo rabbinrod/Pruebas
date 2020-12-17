@@ -43,10 +43,11 @@ CREATE TABLE `categorias` (
 --
 
 CREATE TABLE `usuarios` (
-  `id` int NOT NULL,
+  `id` int NOT NULL PRIMARY KEY,
   `nombre` varchar(30) COLLATE utf8_bin NOT NULL,
   `a_paterno` varchar(20) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
   `a_materno` varchar(20) COLLATE utf8_bin DEFAULT NULL,
+  `email` varchar(40) COLLATE utf8_bin NOT NULL,  
   `imagen` varchar(20) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
   `rol` enum('Supervisor','Encargado','Contador','Cliente') COLLATE utf8_bin NOT NULL DEFAULT 'Cliente',
   `activo` tinyint(1) NOT NULL DEFAULT '0',
@@ -57,11 +58,11 @@ CREATE TABLE `usuarios` (
 -- Volcado de datos para la tabla `usuarios`
 --
 
-INSERT INTO `usuarios` (`id`, `nombre`, `a_paterno`, `a_materno`, `imagen`, `rol`, `activo`, `password`) VALUES
-(3, 'Jorge Octavio', 'Guzmán', 'Sánchez', 'fotogit.jpg', 'Supervisor', 0, '$2y$10$yyXJqXRqSEfOscVNBS8Jm.uovr8x1OzuE.DpXlwQmvoAA7dai1csm'),
-(4, 'Encargado', NULL, NULL, NULL, 'Encargado', 0, '$2y$10$pfwFtyBI0Y16g.sWaItlT.w8jw3n1.maj8N/r9epXHm202VV7A.fK'),
-(5, 'Contador', NULL, NULL, NULL, 'Contador', 0, '$2y$10$QyyvHNu86kl/HmBldU0GP.A6Z.inalQcsLWAFXltCMDBk4Bb/JHse'),
-(6, 'Cliente', NULL, NULL, NULL, 'Supervisor', 0, '$2y$10$9zASZK6DwWbNyiODmr2X/up8SpNuQ.H2EkkPJhg58fipb8B6pVGo2');
+INSERT INTO `usuarios` (`id`, `nombre`, `a_paterno`, `a_materno`, `email`, `imagen`, `rol`, `activo`, `password`) VALUES
+(1, 'Jorge Octavio', 'Guzmán', 'Sánchez', 'jguzma@mercado.tst', 'fotogit.jpg', 'Supervisor', 0, '$2y$10$yyXJqXRqSEfOscVNBS8Jm.uovr8x1OzuE.DpXlwQmvoAA7dai1csm'),
+(2, 'Encargado', NULL, NULL,'encargado@mercado.tst', NULL, 'Encargado', 0, '$2y$10$pfwFtyBI0Y16g.sWaItlT.w8jw3n1.maj8N/r9epXHm202VV7A.fK'),
+(3, 'Contador', NULL, NULL,'contador@mercado.tst', NULL, 'Contador', 0, '$2y$10$QyyvHNu86kl/HmBldU0GP.A6Z.inalQcsLWAFXltCMDBk4Bb/JHse'),
+(4, 'Cliente', NULL, NULL, 'cliente@mercado.tst', NULL, 'Supervisor', 0, '$2y$10$9zASZK6DwWbNyiODmr2X/up8SpNuQ.H2EkkPJhg58fipb8B6pVGo2');
 
 --
 -- Índices para tablas volcadas
