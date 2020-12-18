@@ -24,8 +24,8 @@
     <div class="form-group">
         <label for="email">E-mail del usuario:</label>
         <input id="email" type="email" name="email" class="form-control">
-        <small id="comp_mail"></small>
-        <small id="result"></small>
+        <small id="compmail"  class="text-danger"></small>
+        <small id="result" class="text-danger"></small>
     </div>
     <div class="form-group">
         <label for="imagen">Imagen del usuario:</label>
@@ -41,36 +41,35 @@
     </div>
     <input id="register" type="submit" class="btn btn-primary" value="Registrarse">    
 </form>
-
 <script>
     $('#email').blur(function(){
-        var comp_mail='';
+        var compmail='';
         var email= $('#email').val();
         var _token=$('input[name="_token"]').val();
         var filter= /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
         if(!filter.test(email))
         {
             $('#error').addClass('has-error');
-            $('#comp_mail').html('<small class="text-danger">Correo Invalido</small>');
+            $('#compmail').html('<small class="text-danger">Correo Invalido</small>');
             $('#register').attr('disabled','disabled');
         }
         else
         {
             $.ajax({
-               url:"{{route('verif')}}" ,
+               url:"{{route('verfmail')}}" ,
                method:"POST",
                data:{email:email, _token:_token},
                success:function(result)
                {
                    if(result=='unique')
                    {
-                       $('#comp_mail').html('<label class="text-success">Email Disponible</label>');
+                       $('#compmail').html('<label class="text-success">Email Disponible</label>');
                        $('#email').removeClass('has-error');
                        $('#register').attr('disabled',false);
                    }
                    else
                    {
-                    $('#comp_mail').html('<small class="text-danger">Email en uso</small>');
+                    $('#compmail').html('<small class="text-danger">Email en uso</small>');
                     $('#email').addClass('has-error');
                        $('#register').attr('disabled','disabled');
                    }

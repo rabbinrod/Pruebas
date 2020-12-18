@@ -66,26 +66,4 @@ class AutenticarControler extends Controller
         }
         
     }
-
-    public function verifEmail(Request $request)
-    {
-       if  ($request->get('email'))
-       {
-
-           $email=$request->get('email');
-           $correo=Usuario::all()->where('email','=',$email);
-           $data=DB::table("usuarios")
-           ->where('email',$email)
-           ->count();
-
-           if($data)
-           {
-            echo 'not_unique';
-           }
-           else
-           {
-            echo 'unique';
-           }
-       }
-    }
 }
